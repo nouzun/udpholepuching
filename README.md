@@ -56,6 +56,6 @@ Assume that Alice wants to call Bob. Skype server knows what addresses Alice and
 
 First Alice tells the Skype server that she wants to call Bob. Then, Skype server passes Alice’s information (IP address and port number) to Bob. Bob's Skype program punches a hole in its own network. It sends a UDP packet to Alice. But Alice’s firewall drops the packet. Now there is a hole in Bob’s firewall and it allows packets which come from Alice’s IP and port number. Then server passes Bob’s information to Alice and Alice punches a hole in its own network for Bob. By this way, they communicate peer-to-peer.
 
-![Figure 1: UDP Hole Punching](https://i.imgsafe.org/27679e2fb3.png)
+![Figure 1: UDP Hole Punching](https://i.imgsafe.org/278b5ac6c7.png)
 
 If UDP Hole punching is not possible because of the port randomization by the NAT devices, then the server is used to pass the whole communication between users behind NAT.
