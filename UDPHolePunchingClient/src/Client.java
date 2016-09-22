@@ -60,23 +60,21 @@ public class Client {
       
       ClientSender sender = new ClientSender(clientSocket, client.address, client.port, portNumber);
       
-	  Thread threadSend = new Thread(sender);
-	  threadSend.start(); 
+      Thread threadSend = new Thread(sender);
+      threadSend.start(); 
       
       while(true){
-
-    	  receivePacket = new DatagramPacket(receiveData, receiveData.length);
-    	  clientSocket.receive(receivePacket);
+	receivePacket = new DatagramPacket(receiveData, receiveData.length);
+	clientSocket.receive(receivePacket);
     	   
-    	  if(receivePacket.getPort() != clientSocket.getLocalPort())
-    	  {
-    		  sender.address = receivePacket.getAddress();
-    		  sender.port = receivePacket.getPort();
-    	      String reply = new String(receivePacket.getData(), 0 ,receivePacket.getLength());
-    	      System.out.println(receivePacket.getAddress().getHostAddress() + ":" + receivePacket.getPort() + ": " + reply);
-    	      //System.out.println(InetAddress.getLocalHost().getHostAddress() + ":" + clientSocket.getLocalPort());
-    	  }
-	      
+	if(receivePacket.getPort() != clientSocket.getLocalPort())
+	{
+		sender.address = receivePacket.getAddress();
+		sender.port = receivePacket.getPort();
+		String reply = new String(receivePacket.getData(), 0 ,receivePacket.getLength());
+		System.out.println(receivePacket.getAddress().getHostAddress() + ":" + receivePacket.getPort() + ": " + reply);
+		//System.out.println(InetAddress.getLocalHost().getHostAddress() + ":" + clientSocket.getLocalPort());
+	}
       }
    }
 }
